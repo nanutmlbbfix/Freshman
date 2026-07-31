@@ -6,63 +6,63 @@
 const LETTERS_DATA = {
   stillwater: {
     name: "Alinsyira",
-    photo: "images/alinsyira.jpg",
+    photo: "alinsyira.jpg",
     letter: "Alin, dari pertama kali kenal sampai sekarang, aku selalu melihat kamu sebagai orang yang tenang. Kamu bukan tipe yang banyak bicara, tapi setiap kali berbicara selalu ada makna di dalamnya. Sikap sabar dan kelembutanmu adalah sesuatu yang menurutku akan menjadi kekuatan besar di mana pun nanti kamu berada. Tetaplah mengejar impianmu menjadi UI/UX Designer di perusahaan multinasional. Jangan pernah merasa kamu harus menjadi orang lain untuk berhasil, karena justru ketenanganmu adalah identitasmu. Semoga suatu hari nanti kita bertemu lagi sebagai orang-orang yang berhasil mewujudkan impian masing-masing.",
     memory: "Hal yang paling aku ingat darimu adalah bagaimana kamu selalu mendengarkan lebih banyak daripada berbicara. Tidak semua orang memiliki kualitas itu.",
   },
 
   northstar: {
     name: "Rayhan",
-    photo: "images/rayhan.jpg",
+    photo: "rayhan.jpg",
     letter: `Rayhan, aku tahu kamu punya target yang jelas untuk mendapatkan IPK di atas 3.51. Dari cara kamu belajar dan berpikir, menurutku itu bukan target yang mustahil. Aku hanya berharap satu hal, jangan biarkan rasa kurang percaya diri membuatmu meragukan kemampuanmu sendiri. Orang lain mungkin melihat potensi yang lebih besar dalam dirimu daripada yang kamu sadari. Terus berkembang, tetap rendah hati, dan jangan takut menunjukkan kemampuanmu.`,
     memory: `Aku selalu mengingatmu sebagai orang yang tenang, tetapi sebenarnya memiliki banyak potensi yang belum sepenuhnya kamu tunjukkan.`
   },
 
   architect: {
     name: "Andhika Ditama",
-    photo: "images/andhika-ditama.jpg",
+    photo: "andhika-ditama.jpg",
     letter: `Dhika, aku senang melihat kamu sudah memiliki tujuan yang ingin kamu capai, yaitu bergabung dengan IT Division. Tetap pertahankan rasa ingin tahu, cara berpikir kritis, dan semangat belajarmu. Dunia teknologi selalu berubah, jadi jangan pernah berhenti berkembang. Aku yakin, dengan konsistensi yang kamu miliki, kamu akan menemukan banyak kesempatan yang lebih besar dari yang kamu bayangkan sekarang.`,
     memory: `Aku paling mengingat bagaimana kamu selalu mencoba memahami sesuatu sebelum mengambil kesimpulan. Sikap itu akan sangat membantumu di masa depan.`
   },
 
   wildfire: {
     name: "Tristan",
-    photo: "images/tristan.jpg",
+    photo: "tristan.jpg",
     letter: `Tristan, energimu selalu terasa setiap kali berada di dalam kelompok. Sebagai seorang atlet, aku bisa melihat semangat kompetitif dan kerja keras yang sudah menjadi bagian dari dirimu. Pertahankan rasa percaya dirimu, tetapi jangan pernah kehilangan kerendahan hati. Orang yang hebat bukan hanya dikenal karena prestasinya, tetapi juga karena sikapnya terhadap orang lain. Tetap jadi dirimu yang berani dan penuh semangat.`,
     memory: `Yang paling aku ingat darimu adalah bagaimana kamu selalu membawa energi positif dan membuat suasana menjadi lebih hidup.`
   },
 
   gentleman: {
     name: "Thrianggoro",
-    photo: "images/goro.jpg",
+    photo: "goro.jpg",
     letter: `Goro, salah satu hal yang paling aku kagumi darimu adalah bagaimana kamu menjaga dirimu sendiri sekaligus tetap memperlakukan orang lain dengan sangat baik. Tidak banyak orang yang bisa menyeimbangkan keduanya. Pertahankan sikap rendah hati, disiplin, dan attitude baikmu. Hal-hal itu mungkin terlihat sederhana hari ini, tetapi suatu saat nanti akan menjadi alasan banyak kesempatan datang kepadamu.`,
     memory: `Aku selalu mengingatmu sebagai pribadi yang rapi, sopan, dan mampu membuat orang lain merasa nyaman ketika berbicara.`
   },
 
   relentless: {
     name: "Nabil",
-    photo: "images/nabil.jpg",
+    photo: "nabil.jpg",
     letter: `Nabil, aku masih ingat ketika kamu bercerita tentang targetmu untuk meraih SIS Excellence di tahun pertama. Aku suka cara berpikirmu yang berani menetapkan tujuan tinggi. Jalan menuju target itu mungkin tidak akan mudah, tetapi selama kamu terus belajar dan tetap konsisten, aku percaya hasilnya akan mengikuti. Jangan takut gagal, karena setiap langkah kecil tetap membawamu lebih dekat kepada impianmu.`,
     memory: `Aku paling mengingat keberanianmu untuk memiliki target yang jelas sejak awal perjalanan kuliahmu.`
   },
 
   lily: {
     name: "Charma",
-    photo: "images/charma.jpg",
+    photo: "charma.jpg",
     letter: `Charma, selamat sekali lagi karena berhasil diterima di UNPAD. Aku benar-benar berharap kamu menikmati setiap proses yang akan kamu jalani di sana. Kamu adalah pribadi yang lembut, ramah, dan selalu menghargai orang lain. Jangan pernah kehilangan kualitas itu, karena dunia selalu membutuhkan lebih banyak orang baik. Walaupun nanti kita berada di kampus yang berbeda, aku berharap suatu hari nanti kita bisa bertemu lagi dengan cerita-cerita baru yang membanggakan.`,
     memory: `Yang paling aku ingat darimu adalah ketenangan dan keramahanmu kepada semua orang di sekitarmu.`
   },
 
   wanderer: {
     name: "Andhika Putra",
-    photo: "images/andhika-putra.jpg",
+    photo: "andhika-putra.jpg",
     letter: `Dhika, mungkin saat ini kamu masih merasa belum benar-benar menemukan arah yang ingin kamu tuju, dan menurutku itu bukan sesuatu yang salah. Banyak orang menemukan passion mereka justru setelah mencoba berbagai hal. Jangan terburu-buru membandingkan dirimu dengan orang lain. Teruslah bereksplorasi, mencoba, dan belajar. Aku percaya suatu hari nanti kamu akan menemukan sesuatu yang benar-benar membuatmu bersemangat.`,
     memory: `Aku paling mengingat bagaimana kamu selalu mencoba memahami dirimu sendiri, meskipun mungkin kamu belum menemukan semua jawabannya hari ini.`
   },
 
   spark: {
     name: "Farrel",
-    photo: "images/farrel.jpg",
+    photo: "farrel.jpg",
     letter: `Farrel, aku melihat kamu sebagai orang yang sebenarnya memiliki potensi besar. Kamu berani, mudah beradaptasi ketika sudah merasa nyaman, dan menurutku memiliki kemampuan yang masih bisa berkembang jauh. Yang aku harapkan hanyalah kamu bisa lebih konsisten terhadap apa yang ingin kamu capai. Potensi tanpa usaha akan tetap menjadi potensi. Aku percaya kamu mampu menjadi pribadi yang jauh lebih hebat jika mau terus bertumbuh.`,
     memory: `Hal yang paling aku ingat darimu adalah bagaimana kamu berubah dari sosok yang cukup pendiam menjadi jauh lebih aktif ketika mulai merasa nyaman dengan orang-orang di sekitarmu.`
   },
