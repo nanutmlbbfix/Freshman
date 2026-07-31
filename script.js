@@ -70,16 +70,16 @@ const LETTERS_DATA = {
 
 /* ---------- 2. GALLERY DATA ---------- */
 const GALLERY_DATA = [
-  { img: "moment3.jpeg", caption: "Move-in day, boxes everywhere", span: "span-2-2" },
-  { img: "pict.jpeg", caption: "The fire alarm night", span: "span-2-1" },
-  { img: "pic4.jpeg", caption: "Midterms war room", span: "span-1-2" },
-  { img: "bg.jpeg", caption: "3am diner run", span: "" },
-  { img: "pict1.jpeg", caption: "Lake day, one sunburn", span: "" },
-  { img: "moment.jpeg", caption: "Waffle machine rescue", span: "span-2-1" },
+  { img: "moment3.jpeg", caption: "We met, we talk, we closer", span: "span-2-2" },
+  { img: "pict.jpeg", caption: "We Fight Together with Freshman Leader", span: "span-2-1" },
+  { img: "pic4.jpeg", caption: "Keep smilin", span: "span-1-2" },
+  { img: "bg.jpeg", caption: "4hour without lunch", span: "" },
+  { img: "pict1.jpeg", caption: "The one and only Lunch", span: "" },
+  { img: "moment.jpeg", caption: "Appreciate Day", span: "span-2-1" },
   { img: "pic3.jpeg", caption: "The thousand-piece puzzle", span: "" },
   { img: "pic2.jpeg", caption: "Talent show encore", span: "" },
-  { img: "moment2.jpeg", caption: "Meteor shower, 2am", span: "span-2-1" },
-  { img: "pic.jpeg", caption: "Rooftop send-off", span: "span-1-2" },
+  { img: "moment2.jpeg", caption: "Get power to bigger", span: "span-2-1" },
+  { img: "pic.jpeg", caption: "With FYPL & FL bring FM", span: "span-1-2" },
 ];
 
 /* ============================================================
