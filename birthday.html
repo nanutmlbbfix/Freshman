@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Happy Birthday Vincent!</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Cormorant+Garamond:wght@600&display=swap"
+        rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+
+            font-family: Inter, sans-serif;
+
+            background:
+                radial-gradient(circle at top, #3c0f61, #090909);
+
+            height: 100vh;
+
+            overflow: hidden;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            color: white;
+
+            text-align: center;
+
+        }
+
+        .container {
+
+            position: relative;
+            z-index: 2;
+
+        }
+
+        h1 {
+
+            font-size: 72px;
+
+            font-family: "Cormorant Garamond", serif;
+
+            margin-bottom: 15px;
+
+            animation: fade 2s;
+
+        }
+
+        h2 {
+
+            font-size: 34px;
+
+            margin-bottom: 25px;
+
+            color: #ffd95c;
+
+            animation: fade 3s;
+
+        }
+
+        p {
+
+            max-width: 700px;
+
+            margin: auto;
+
+            font-size: 20px;
+
+            line-height: 1.8;
+
+            opacity: .9;
+
+            animation: fade 4s;
+
+        }
+
+        .back {
+
+            display: inline-block;
+
+            margin-top: 50px;
+
+            padding: 14px 30px;
+
+            border: 1px solid rgba(255, 255, 255, .25);
+
+            border-radius: 999px;
+
+            color: white;
+
+            text-decoration: none;
+
+            transition: .3s;
+
+        }
+
+        .back:hover {
+
+            background: white;
+
+            color: black;
+
+        }
+
+        canvas {
+
+            position: absolute;
+
+            top: 0;
+
+            left: 0;
+
+            width: 100%;
+
+            height: 100%;
+
+        }
+
+        @keyframes fade {
+
+            from {
+
+                opacity: 0;
+                transform: translateY(20px);
+
+            }
+
+            to {
+
+                opacity: 1;
+                transform: translateY(0);
+
+            }
+
+        }
+
+        .photo-frame {
+
+            width: min(90vw, 460px);
+
+            margin: 35px auto;
+
+            padding: 10px;
+
+            border-radius: 30px;
+
+            background: linear-gradient(135deg,
+                    #f7d56b,
+                    #c89b3c,
+                    #fff3b0);
+
+            box-shadow:
+                0 0 60px rgba(255, 215, 100, .35),
+                0 20px 60px rgba(0, 0, 0, .45);
+
+            animation: float 4s ease-in-out infinite;
+
+        }
+
+        .photo-frame img {
+
+            width: 100%;
+
+            display: block;
+
+            border-radius: 22px;
+
+            object-fit: cover;
+
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+
+        }
+
+        .photo-frame {
+
+            animation:
+                zoomPhoto 1.2s ease,
+                float 4s ease-in-out infinite 1.2s;
+
+        }
+
+        @keyframes zoomPhoto {
+
+            from {
+
+                opacity: 0;
+
+                transform: scale(.6);
+
+            }
+
+            to {
+
+                opacity: 1;
+
+                transform: scale(1);
+
+            }
+
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <canvas id="confetti"></canvas>
+
+    <div class="container">
+
+        <h1>🎉 Happy Birthday 🎉</h1>
+
+        <h2>Fernardi Vincentius</h2>
+        <div class="photo-frame">
+            <img src="easteregg.jpeg" alt="Fernardi Vincentius">
+        </div>
+
+        <p>
+
+
+            Have an amazing birthday! 🎂✨
+
+        </p>
+
+        <a class="back" href="index.html">
+            ← Back to The Library
+        </a>
+
+    </div>
+
+    <audio id="birthdaySong" autoplay>
+        <source src="hbd.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+
+        // mencoba autoplay
+        window.addEventListener("load", () => {
+
+            const song = document.getElementById("birthdaySong");
+
+            song.volume = .8;
+
+            song.play().catch(() => {
+
+                document.body.addEventListener("click", () => {
+
+                    song.play();
+
+                }, { once: true });
+
+            });
+
+        });
+
+
+        // Confetti sederhana
+
+        const canvas = document.getElementById("confetti");
+        const ctx = canvas.getContext("2d");
+
+        canvas.width = innerWidth;
+        canvas.height = innerHeight;
+
+        const pieces = [];
+
+        for (let i = 0; i < 180; i++) {
+
+            pieces.push({
+
+                x: Math.random() * canvas.width,
+
+                y: Math.random() * canvas.height,
+
+                r: Math.random() * 6 + 2,
+
+                d: Math.random() * 180,
+
+                c: `hsl(${Math.random() * 360},80%,60%)`,
+
+                s: Math.random() * 3 + 2
+
+            });
+
+        }
+
+        function draw() {
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            pieces.forEach(p => {
+
+                ctx.beginPath();
+
+                ctx.fillStyle = p.c;
+
+                ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+
+                ctx.fill();
+
+                p.y += p.s;
+
+                p.x += Math.sin(p.d);
+
+                if (p.y > canvas.height) {
+
+                    p.y = -10;
+
+                    p.x = Math.random() * canvas.width;
+
+                }
+
+            });
+
+            requestAnimationFrame(draw);
+
+        }
+
+        draw();
+
+        const song = document.getElementById("birthdaySong");
+
+        window.addEventListener("load", async () => {
+
+            song.volume = 0.8;
+
+            try {
+                await song.play();
+            } catch (err) {
+
+                console.log("Autoplay blocked");
+
+                document.body.addEventListener("click", () => {
+                    song.play();
+                }, { once: true });
+
+            }
+
+        });
+    </script>
+
+
+</body>
+
+</html>
