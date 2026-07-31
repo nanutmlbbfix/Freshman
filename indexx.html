@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Library of Memories</title>
+<meta name="description" content="A cinematic farewell — nine stories, one shelf, kept forever.">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- FontAwesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<!-- AOS -->
+<link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+
+<!-- Tailwind -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          obsidian: '#0a0a0c',
+          surface: '#131316',
+          surface2: '#1a1a1e',
+          gold: '#e8b563',
+          amber: '#c98a3e',
+          cream: '#f5f0e8',
+          muted: '#9a9a9e',
+        },
+        fontFamily: {
+          serif: ['"Cormorant Garamond"', 'serif'],
+          sans: ['Inter', 'sans-serif'],
+        },
+        boxShadow: {
+          glow: '0 0 60px -10px rgba(232, 181, 99, 0.35)',
+        }
+      }
+    }
+  }
+</script>
+
+<style>
+  :root{
+    --obsidian:#0a0a0c;
+    --surface:#131316;
+    --glass: rgba(255,255,255,0.055);
+    --border: rgba(255,255,255,0.09);
+    --gold:#e8b563;
+    --amber:#c98a3e;
+  }
+  *{ scrollbar-width: thin; scrollbar-color: rgba(232,181,99,0.35) transparent; }
+  ::-webkit-scrollbar{ width:8px; }
+  ::-webkit-scrollbar-thumb{ background: rgba(232,181,99,0.3); border-radius: 10px; }
+
+  html{ scroll-behavior: smooth; }
+  body{
+    background-color: var(--obsidian);
+    color: var(--cream, #f5f0e8);
+    font-family: 'Inter', sans-serif;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  /* Film grain overlay */
+  .grain{
+    pointer-events:none;
+    position:fixed; inset:0; z-index:60; opacity:0.05; mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  .glass{
+    background: var(--glass);
+    backdrop-filter: blur(20px) saturate(140%);
+    -webkit-backdrop-filter: blur(20px) saturate(140%);
+    border: 1px solid var(--border);
+  }
+
+  .text-gradient-gold{
+    background: linear-gradient(120deg, #f6d99b 0%, #e8b563 45%, #c98a3e 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* Hero floating orbs */
+  .orb{
+    position:absolute; border-radius:50%; filter: blur(90px); opacity:0.35;
+    animation: float 16s ease-in-out infinite;
+  }
+  @keyframes float{
+    0%,100%{ transform: translate(0,0) scale(1); }
+    33%{ transform: translate(30px,-40px) scale(1.08); }
+    66%{ transform: translate(-25px,25px) scale(0.95); }
+  }
+
+  @keyframes shimmer{
+    0%{ background-position: -200% center; }
+    100%{ background-position: 200% center; }
+  }
+  .shimmer-text{
+    background: linear-gradient(90deg, #9a9a9e 20%, #f6d99b 50%, #9a9a9e 80%);
+    background-size: 200% auto;
+    -webkit-background-clip: text; background-clip:text; color:transparent;
+    animation: shimmer 5s linear infinite;
+  }
+
+  /* Equalizer bars */
+  .eq-bar{ width:3px; background: var(--gold); border-radius:2px; height:4px; transition: height .15s ease; }
+  .eq.playing .eq-bar{ animation: eq 900ms ease-in-out infinite; }
+  .eq.playing .eq-bar:nth-child(1){ animation-delay: 0ms; }
+  .eq.playing .eq-bar:nth-child(2){ animation-delay: 150ms; }
+  .eq.playing .eq-bar:nth-child(3){ animation-delay: 300ms; }
+  .eq.playing .eq-bar:nth-child(4){ animation-delay: 450ms; }
+  @keyframes eq{
+    0%,100%{ height:4px; }
+    50%{ height:16px; }
+  }
+
+  /* Gallery */
+  .gallery-item{ position:relative; overflow:hidden; border-radius:1rem; cursor:pointer; }
+  .gallery-item img{ width:100%; height:100%; object-fit:cover; transition: transform .8s cubic-bezier(.2,.8,.2,1), filter .5s ease; filter: saturate(0.85) brightness(0.88); }
+  .gallery-item:hover img{ transform: scale(1.08); filter: saturate(1) brightness(1); }
+  .gallery-item .overlay{
+    position:absolute; inset:0; background: linear-gradient(to top, rgba(10,10,12,0.9) 0%, rgba(10,10,12,0.05) 55%, transparent 100%);
+    display:flex; align-items:flex-end; padding:1rem; opacity:0; transition: opacity .4s ease;
+  }
+  .gallery-item:hover .overlay{ opacity:1; }
+
+  /* Timeline */
+  .timeline-line{ background: linear-gradient(to bottom, transparent, rgba(232,181,99,0.5) 10%, rgba(232,181,99,0.5) 90%, transparent); }
+  .timeline-dot{ box-shadow: 0 0 0 4px rgba(10,10,12,1), 0 0 20px 2px rgba(232,181,99,0.6); }
+
+  /* Vinyl + Cassette */
+  .vinyl{
+    background: repeating-radial-gradient(circle at center, #111 0px, #111 2px, #1c1c1f 3px, #111 4px);
+    border-radius:50%;
+    position:relative;
+  }
+  .vinyl::after{
+    content:''; position:absolute; inset:0; margin:auto; width:28%; height:28%;
+    background: radial-gradient(circle at 35% 35%, #e8b563, #8a5b23 70%);
+    border-radius:50%;
+  }
+  .vinyl.spin{ animation: spin 3.2s linear infinite; }
+  @keyframes spin{ from{ transform: rotate(0deg);} to{ transform: rotate(360deg);} }
+
+  .reel{ transition: transform .1s linear; }
+  .reel.spin{ animation: spin 1.4s linear infinite; }
+
+  /* Vault */
+  .shake{ animation: shake .5s cubic-bezier(.36,.07,.19,.97) both; }
+  @keyframes shake{
+    10%,90%{ transform: translateX(-2px); }
+    20%,80%{ transform: translateX(4px); }
+    30%,50%,70%{ transform: translateX(-8px); }
+    40%,60%{ transform: translateX(8px); }
+  }
+
+  /* Letter modal */
+  .letter-modal-backdrop{ backdrop-filter: blur(8px); background: rgba(6,6,7,0.75); }
+  .letter-card{
+    transform-origin: center;
+    animation: pageIn .55s cubic-bezier(.2,.9,.25,1) both;
+  }
+  @keyframes pageIn{
+    from{ opacity:0; transform: scale(0.92) rotateX(6deg) translateY(30px); }
+    to{ opacity:1; transform: scale(1) rotateX(0) translateY(0); }
+  }
+
+  .card-stamp{
+    border: 2px solid rgba(232,181,99,0.6);
+    color: rgba(232,181,99,0.85);
+    transform: rotate(-8deg);
+  }
+
+  .section-heading::before{
+    content: attr(data-label);
+    display:block;
+    font-size: 0.7rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.75rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+  }
+
+  input:focus, button:focus-visible{ outline: 2px solid rgba(232,181,99,0.7); outline-offset: 3px; }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; scroll-behavior:auto !important; }
+  }
+
+  .fade-scroll::-webkit-scrollbar{ display:none; }
+</style>
+</head>
+<body class="antialiased">
+
+<div class="grain"></div>
+
+<!-- ============ TOP BAR : AMBIENT AUDIO PLAYER ============ -->
+<div class="fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-5 md:px-10 py-4">
+  <div class="flex items-center gap-2 opacity-90">
+    <i class="fa-solid fa-book-bookmark text-gold text-sm"></i>
+    <span class="font-serif italic text-sm md:text-base tracking-wide text-cream/90">Library of Memories</span>
+  </div>
+
+  <button id="ambientToggle" class="glass rounded-full pl-3 pr-4 py-2 flex items-center gap-3 hover:shadow-glow transition-shadow duration-500 group">
+    <span id="ambientIcon" class="w-7 h-7 rounded-full bg-gold/15 flex items-center justify-center text-gold text-xs">
+      <i class="fa-solid fa-play"></i>
+    </span>
+    <span class="eq flex items-end gap-[3px] h-4" id="eqBars">
+      <span class="eq-bar"></span><span class="eq-bar"></span><span class="eq-bar"></span><span class="eq-bar"></span>
+    </span>
+    <span class="text-[11px] tracking-widest uppercase text-muted hidden sm:inline">Ambient</span>
+  </button>
+</div>
+
+<!-- ============ HERO ============ -->
+<section class="relative min-h-screen flex items-center justify-center overflow-hidden px-6">
+  <div class="orb w-[420px] h-[420px] bg-amber -top-20 -left-20"></div>
+  <div class="orb w-[380px] h-[380px] bg-gold top-1/3 right-0"></div>
+  <div class="orb w-[300px] h-[300px] bg-amber bottom-0 left-1/3"></div>
+
+  <div class="relative z-10 text-center max-w-3xl mx-auto" data-aos="fade-up" data-aos-duration="1200">
+    <p class="uppercase tracking-[0.5em] text-xs md:text-sm text-gold/80 mb-6">A Farewell, Shelved Forever</p>
+    <h1 class="font-serif text-5xl sm:text-6xl md:text-8xl italic leading-[1.05] text-gradient-gold">
+      Every memory<br class="hidden sm:block"> has a home.
+    </h1>
+    <p class="mt-8 text-muted text-base md:text-lg max-w-xl mx-auto leading-relaxed shimmer-text">
+      Nine freshmen. One year. A shelf built to keep every one of you, exactly as I found you.
+    </p>
+
+    <div class="mt-12 flex items-center justify-center gap-4 flex-wrap">
+      <a href="#gallery" class="glass px-6 py-3 rounded-full text-sm tracking-wide hover:border-gold/60 transition-colors duration-300">
+        <i class="fa-regular fa-images mr-2 text-gold"></i>Enter the Gallery
+      </a>
+      <a href="#vault" class="bg-gold text-obsidian px-6 py-3 rounded-full text-sm font-medium tracking-wide hover:bg-cream transition-colors duration-300">
+        <i class="fa-solid fa-vault mr-2"></i>Open the Vault
+      </a>
+    </div>
+  </div>
+
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 text-muted text-xs tracking-widest uppercase flex flex-col items-center gap-2 animate-bounce">
+    <span>Scroll</span>
+    <i class="fa-solid fa-chevron-down"></i>
+  </div>
+</section>
+
+<!-- ============ GALLERY ============ -->
+<section id="gallery" class="relative py-28 px-6 md:px-12 max-w-7xl mx-auto">
+  <div class="mb-14 max-w-2xl" data-aos="fade-right">
+    <h2 class="section-heading" data-label="The Shelf">
+      <span class="font-serif italic text-4xl md:text-5xl text-cream">Moments we didn't know<br>we'd keep.</span>
+    </h2>
+  </div>
+
+  <div class="grid grid-cols-2 md:grid-cols-4 auto-rows-[160px] md:auto-rows-[200px] gap-4">
+    <div class="gallery-item col-span-2 row-span-2" data-aos="fade-up" data-aos-delay="0">
+      <img src="pic.jpeg" alt="Orientation week, the whole crew on the quad steps">
+      <div class="overlay"><p class="text-sm text-cream/90 font-medium">Orientation Week — Day One</p></div>
+    </div>
+    <div class="gallery-item" data-aos="fade-up" data-aos-delay="80">
+      <img src="https://picsum.photos/seed/lateNightStudy/600/600" alt="Late night study session in the common room">
+      <div class="overlay"><p class="text-xs text-cream/90">Midnight before finals</p></div>
+    </div>
+    <div class="gallery-item" data-aos="fade-up" data-aos-delay="120">
+      <img src="https://picsum.photos/seed/hikeSunrise/600/600" alt="Group hike at sunrise on the ridge trail">
+      <div class="overlay"><p class="text-xs text-cream/90">The 5am hike</p></div>
+    </div>
+    <div class="gallery-item row-span-2" data-aos="fade-up" data-aos-delay="160">
+      <img src="https://picsum.photos/seed/karaokeNight/600/900" alt="Karaoke night in the dorm lounge">
+      <div class="overlay"><p class="text-xs text-cream/90">Karaoke, badly sung</p></div>
+    </div>
+    <div class="gallery-item" data-aos="fade-up" data-aos-delay="200">
+      <img src="https://picsum.photos/seed/parkingLotTalk/600/600" alt="Late night talk in the parking lot">
+      <div class="overlay"><p class="text-xs text-cream/90">The parking lot talk</p></div>
+    </div>
+    <div class="gallery-item col-span-2" data-aos="fade-up" data-aos-delay="240">
+      <img src="https://picsum.photos/seed/moveOutMural/900/500" alt="Painting a mural together on move-out day">
+      <div class="overlay"><p class="text-sm text-cream/90 font-medium">The mural, move-out day</p></div>
+    </div>
+    <div class="gallery-item" data-aos="fade-up" data-aos-delay="280">
+      <img src="https://picsum.photos/seed/blackoutTrivia/600/600" alt="Candlelit trivia during a campus blackout">
+      <div class="overlay"><p class="text-xs text-cream/90">Blackout trivia</p></div>
+    </div>
+    <div class="gallery-item" data-aos="fade-up" data-aos-delay="320">
+      <img src="https://picsum.photos/seed/hallwayDrumline/600/600" alt="Midnight hallway drumline">
+      <div class="overlay"><p class="text-xs text-cream/90">The hallway drumline</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TIMELINE ============ -->
+<section id="timeline" class="relative py-28 px-6 md:px-12 max-w-4xl mx-auto">
+  <div class="mb-16 text-center" data-aos="fade-up">
+    <h2 class="section-heading mx-auto" data-label="The Chapters">
+      <span class="font-serif italic text-4xl md:text-5xl text-cream">How the year read.</span>
+    </h2>
+  </div>
+
+  <div class="relative pl-8 md:pl-0">
+    <div class="timeline-line absolute left-3 md:left-1/2 top-0 bottom-0 w-px md:-translate-x-1/2"></div>
+
+    <div class="space-y-14">
+      <div class="relative md:grid md:grid-cols-2 md:gap-10 items-center" data-aos="fade-up">
+        <span class="absolute left-3 md:left-1/2 top-1 w-3 h-3 rounded-full bg-gold timeline-dot -translate-x-1/2"></span>
+        <div class="md:text-right md:pr-10">
+          <p class="text-gold text-xs tracking-widest uppercase mb-1">Week One</p>
+          <h3 class="font-serif italic text-2xl text-cream mb-2">Nine Strangers, One Group Chat</h3>
+          <p class="text-muted text-sm leading-relaxed">Nine names I couldn't yet match to faces became nine people I'd trust with anything by the end of orientation.</p>
+        </div>
+        <div class="hidden md:block"></div>
+      </div>
+
+      <div class="relative md:grid md:grid-cols-2 md:gap-10 items-center" data-aos="fade-up">
+        <span class="absolute left-3 md:left-1/2 top-1 w-3 h-3 rounded-full bg-gold timeline-dot -translate-x-1/2"></span>
+        <div class="hidden md:block"></div>
+        <div class="md:pl-10">
+          <p class="text-gold text-xs tracking-widest uppercase mb-1">October</p>
+          <h3 class="font-serif italic text-2xl text-cream mb-2">The First Real Storm</h3>
+          <p class="text-muted text-sm leading-relaxed">First midterms, first homesickness, first time the group held each other up instead of a leader holding everyone up alone.</p>
+        </div>
+      </div>
+
+      <div class="relative md:grid md:grid-cols-2 md:gap-10 items-center" data-aos="fade-up">
+        <span class="absolute left-3 md:left-1/2 top-1 w-3 h-3 rounded-full bg-gold timeline-dot -translate-x-1/2"></span>
+        <div class="md:text-right md:pr-10">
+          <p class="text-gold text-xs tracking-widest uppercase mb-1">December</p>
+          <h3 class="font-serif italic text-2xl text-cream mb-2">The Blackout Night</h3>
+          <p class="text-muted text-sm leading-relaxed">Power out, phones dying, and somehow the best night of the semester happened by candlelight.</p>
+        </div>
+        <div class="hidden md:block"></div>
+      </div>
+
+      <div class="relative md:grid md:grid-cols-2 md:gap-10 items-center" data-aos="fade-up">
+        <span class="absolute left-3 md:left-1/2 top-1 w-3 h-3 rounded-full bg-gold timeline-dot -translate-x-1/2"></span>
+        <div class="hidden md:block"></div>
+        <div class="md:pl-10">
+          <p class="text-gold text-xs tracking-widest uppercase mb-1">March</p>
+          <h3 class="font-serif italic text-2xl text-cream mb-2">Finals, Together This Time</h3>
+          <p class="text-muted text-sm leading-relaxed">The same common room from October, but this time nobody studied alone — and nobody had to ask.</p>
+        </div>
+      </div>
+
+      <div class="relative md:grid md:grid-cols-2 md:gap-10 items-center" data-aos="fade-up">
+        <span class="absolute left-3 md:left-1/2 top-1 w-3 h-3 rounded-full bg-gold timeline-dot -translate-x-1/2"></span>
+        <div class="md:text-right md:pr-10">
+          <p class="text-gold text-xs tracking-widest uppercase mb-1">Move-Out Day</p>
+          <h3 class="font-serif italic text-2xl text-cream mb-2">The Mural</h3>
+          <p class="text-muted text-sm leading-relaxed">Nine hands, one wall, and a year that refused to end quietly. This site is the part that couldn't fit on the wall.</p>
+        </div>
+        <div class="hidden md:block"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MUSIC : CASSETTE / VINYL ============ -->
+<section id="music" class="relative py-28 px-6 md:px-12">
+  <div class="max-w-4xl mx-auto text-center mb-14" data-aos="fade-up">
+    <h2 class="section-heading mx-auto" data-label="The Soundtrack">
+      <span class="font-serif italic text-4xl md:text-5xl text-cream">Our theme song.</span>
+    </h2>
+    <p class="text-muted text-sm max-w-md mx-auto mt-4">Press play. It's the closest thing I have to what this year sounded like.</p>
+  </div>
+
+  <div class="max-w-3xl mx-auto glass rounded-3xl p-6 md:p-10 flex flex-col md:flex-row items-center gap-8 md:gap-12" data-aos="zoom-in">
+    <!-- Vinyl -->
+    <div class="relative shrink-0">
+      <div id="vinylDisc" class="vinyl w-40 h-40 md:w-48 md:h-48"></div>
+      <div class="absolute -bottom-3 left-1/2 -translate-x-1/2 text-[10px] tracking-widest text-muted uppercase">Side A</div>
+    </div>
+
+    <!-- Cassette -->
+    <div class="flex-1 w-full">
+      <div class="bg-surface2 border border-white/10 rounded-2xl px-6 py-5 relative overflow-hidden">
+        <div class="flex justify-between items-center mb-4">
+          <div class="flex gap-6">
+            <div class="w-9 h-9 rounded-full border-2 border-gold/70 flex items-center justify-center reel" id="reelLeft">
+              <div class="w-2 h-2 bg-gold/70 rounded-full"></div>
+            </div>
+            <div class="w-9 h-9 rounded-full border-2 border-gold/70 flex items-center justify-center reel" id="reelRight">
+              <div class="w-2 h-2 bg-gold/70 rounded-full"></div>
+            </div>
+          </div>
+          <span class="text-[10px] tracking-widest text-muted uppercase">TAPE 01 / FROSH</span>
+        </div>
+        <p class="font-serif italic text-lg text-cream/90 mb-1">"Nine of a Kind"</p>
+        <p class="text-xs text-muted mb-5">Freshman Year Mixtape — 3:42</p>
+
+        <div class="w-full h-1 bg-white/10 rounded-full overflow-hidden mb-5">
+          <div id="musicProgress" class="h-full bg-gold w-0 transition-all duration-200"></div>
+        </div>
+
+        <div class="flex items-center gap-4">
+          <button id="musicToggle" class="w-11 h-11 rounded-full bg-gold text-obsidian flex items-center justify-center hover:scale-105 transition-transform">
+            <i class="fa-solid fa-play" id="musicIcon"></i>
+          </button>
+          <span id="musicTime" class="text-xs text-muted tabular-nums">0:00 / 3:42</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ VAULT ============ -->
+<section id="vault" class="relative py-28 px-6 md:px-12">
+  <div class="max-w-xl mx-auto text-center" data-aos="fade-up">
+    <i class="fa-solid fa-vault text-gold text-3xl mb-6"></i>
+    <h2 class="section-heading mx-auto" data-label="The Restricted Section">
+      <span class="font-serif italic text-4xl md:text-5xl text-cream">Nine letters. Nine keywords.</span>
+    </h2>
+    <p class="text-muted text-sm mt-4 mb-10 leading-relaxed">
+      Somewhere in this year, I gave each of you a word. Type yours below to check out your letter.
+    </p>
+
+    <form id="vaultForm" class="relative">
+      <div id="vaultInputWrap" class="glass rounded-2xl flex items-center gap-3 px-5 py-4 transition-colors duration-300">
+        <i class="fa-solid fa-key text-gold/80"></i>
+        <input id="vaultInput" type="text" autocomplete="off" placeholder="Enter your keyword…"
+          class="bg-transparent flex-1 outline-none text-cream placeholder:text-muted/70 tracking-wide" />
+        <button type="submit" class="text-xs uppercase tracking-widest text-gold hover:text-cream transition-colors">
+          Unlock
+        </button>
+      </div>
+      <p id="vaultError" class="hidden text-red-400/90 text-xs mt-3 tracking-wide">
+        <i class="fa-solid fa-circle-exclamation mr-1"></i> That word doesn't open anything here. Try again.
+      </p>
+    </form>
+
+    <button id="hintOpen" class="mt-6 text-xs text-muted hover:text-gold transition-colors tracking-widest uppercase">
+      <i class="fa-regular fa-lightbulb mr-1"></i> Need a hint?
+    </button>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="relative py-14 px-6 text-center border-t border-white/5">
+  <p class="font-serif italic text-cream/80 text-lg mb-2">Every page remembers you.</p>
+  <p class="text-muted text-xs tracking-widest uppercase">From your Freshman Leader — with all of it, always</p>
+</footer>
+
+<!-- ============ LIGHTBOX MODAL ============ -->
+<div id="lightbox" class="fixed inset-0 z-[70] hidden items-center justify-center letter-modal-backdrop px-6" role="dialog" aria-modal="true">
+  <button id="lightboxClose" class="absolute top-6 right-6 text-cream/80 hover:text-gold text-2xl">
+    <i class="fa-solid fa-xmark"></i>
+  </button>
+  <div class="max-w-3xl w-full">
+    <img id="lightboxImg" src="" alt="" class="w-full max-h-[80vh] object-contain rounded-xl border border-white/10">
+    <p id="lightboxCaption" class="text-center text-muted text-sm mt-4"></p>
+  </div>
+</div>
+
+<!-- ============ HINT MODAL ============ -->
+<div id="hintModal" class="fixed inset-0 z-[70] hidden items-center justify-center letter-modal-backdrop px-6" role="dialog" aria-modal="true">
+  <div class="glass rounded-3xl max-w-lg w-full p-8 md:p-10 relative max-h-[85vh] overflow-y-auto fade-scroll">
+    <button id="hintClose" class="absolute top-5 right-5 text-cream/80 hover:text-gold text-xl">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+    <h3 class="font-serif italic text-3xl text-gradient-gold mb-2">Nine Riddles</h3>
+    <p class="text-muted text-xs mb-6 tracking-wide">Each one points to a single word. No answers here — just the clue you already earned.</p>
+    <ul class="space-y-4 text-sm">
+      <li class="border-l-2 border-gold/50 pl-4"><span class="text-cream font-medium">Aria —</span> <span class="text-muted">The color the sky turns when courage wakes up early.</span></li>
+      <li class="border-l-2 border-gold/50 pl-4"><span class="text-cream font-medium">Noah —</span> <span class="text-muted">What a canyon gives back when you shout into it.</span></li>
+      <li class="border-l-2 border-gold/50 pl-4"><span class="text-cream font-medium">Maya —</span> <span class="text-muted">A streak of light that visits once, then makes you wait years for the next.</span></li>
+      <li class="border-l-2 border-gold/50 pl-4"><span class="text-cream font-medium">Ethan —</span> <span class="text-muted">A place ships return to when the sea gets loud.</span></li>
+      <li class="border-l-2 border-gold/50 pl-4"><span class="text-cream font-medium">Sophia —</span> <span class="text-muted">A small flame you carry so no one has to walk in the dark.</span></li>
+      <li class="border-l-2 border-gold/50 pl-4"><span class="text-cream font-medium">Kai —</span> <span class="text-muted">The path everything follows around the thing it can't stop circling.</span></li>
+      <li class="border-l-2 border-gold/50 pl-4"><span class="text-cream font-medium">Zara —</span> <span class="text-muted">Blank, until someone brave enough picks up a brush.</span></li>
+      <li class="border-l-2 border-gold/50 pl-4"><span class="text-cream font-medium">Lucas —</span> <span class="text-muted">The beat that makes a room move without asking permission.</span></li>
+      <li class="border-l-2 border-gold/50 pl-4"><span class="text-cream font-medium">Priya —</span> <span class="text-muted">The invisible line that decides when "here" becomes "noon."</span></li>
+    </ul>
+  </div>
+</div>
+
+<!-- ============ LETTER MODAL ============ -->
+<div id="letterModal" class="fixed inset-0 z-[80] hidden items-center justify-center letter-modal-backdrop px-4 md:px-6" role="dialog" aria-modal="true">
+  <div class="letter-card glass rounded-3xl max-w-3xl w-full max-h-[88vh] overflow-y-auto fade-scroll relative">
+    <button id="letterClose" class="absolute top-5 right-5 text-cream/80 hover:text-gold text-xl z-10">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+
+    <div class="p-8 md:p-12">
+      <div class="flex items-center justify-between mb-8 flex-wrap gap-3">
+        <span class="text-[10px] tracking-[0.3em] uppercase text-gold/80">Library of Memories — Personal Archive</span>
+        <span id="letterStamp" class="card-stamp text-[10px] uppercase tracking-widest px-3 py-1 rounded-sm">Checked Out</span>
+      </div>
+
+      <div class="grid md:grid-cols-[180px_1fr] gap-8 items-start">
+        <div class="mx-auto md:mx-0">
+          <div class="w-36 h-36 md:w-44 md:h-44 rounded-2xl overflow-hidden border-2 border-gold/40 shadow-glow">
+            <img id="letterPhoto" src="" alt="" class="w-full h-full object-cover">
+          </div>
+          <p id="letterName" class="font-serif italic text-2xl text-center md:text-left text-cream mt-4"></p>
+          <p class="text-center md:text-left text-[10px] tracking-widest uppercase text-muted mt-1">Keyword: <span id="letterKeyword" class="text-gold"></span></p>
+        </div>
+
+        <div>
+          <p id="letterBody" class="font-serif text-lg md:text-xl leading-relaxed text-cream/90 whitespace-pre-line"></p>
+
+          <div class="mt-8 bg-gold/10 border border-gold/25 rounded-xl p-5">
+            <i class="fa-solid fa-quote-left text-gold/70 mb-2 block"></i>
+            <p id="letterMemory" class="text-sm text-cream/85 italic leading-relaxed"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ AOS + JS ============ -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+(function(){
+  "use strict";
+
+  /* ---------------------------------------------------
+   *  LETTERS_DATA — mock data for the 9 freshmen
+   * --------------------------------------------------- */
+  const LETTERS_DATA = {
+    "sunrise": {
+      name: "Aria Chen",
+      photo: "https://i.pravatar.cc/400?img=47",
+      letter: "Aria — you were the only person who treated a 5am wake-up call like a dare, not a punishment. You dragged eight tired freshmen up a ridge in the dark and refused to let a single one of us turn back, even when I wanted to. Watching the sun come up with you at the front of that line taught me more about leadership than any training ever did. You didn't wait to be given the front spot. You just walked there.",
+      memory: "The 5am hike where you refused to let anyone quit — including me."
+    },
+    "echo": {
+      name: "Noah Patel",
+      photo: "https://i.pravatar.cc/400?img=13",
+      letter: "Noah — I still don't know how a completely off-key karaoke night turned into one of the best memories of the year, but it did, and it's because of you. You have this way of making a room feel loud and safe at the same time. Whatever you sing next, in whatever room you're in, know that the first room you ever lit up like that had eight other freshmen in it, cheering for you.",
+      memory: "The karaoke night you accidentally turned into a movie scene."
+    },
+    "comet": {
+      name: "Maya Rodriguez",
+      photo: "https://i.pravatar.cc/400?img=25",
+      letter: "Maya — the night before finals, in an empty parking lot, you said something that I still think about. You weren't trying to fix anything or make it sound better than it was. You just sat with me in it. That's rarer than people think. You show up like a comet — not often, but when you do, everyone stops and looks up. Don't let anyone talk you out of that timing.",
+      memory: "The late-night talk in the parking lot, the night before everything felt too big."
+    },
+    "harbor": {
+      name: "Ethan Okafor",
+      photo: "https://i.pravatar.cc/400?img=52",
+      letter: "Ethan — orientation week broke half of us a little, and you never once let it show that it was breaking you too. You checked on everyone before anyone checked on you. That's not something I taught you. That's just who you decided to be, from day one. Anywhere you go, you'll be the harbor people didn't know they needed until the sea got loud.",
+      memory: "You carried the whole group's mood on your back during orientation week and never asked for credit."
+    },
+    "lantern": {
+      name: "Sophia Lindqvist",
+      photo: "https://i.pravatar.cc/400?img=45",
+      letter: "Sophia — the power went out on one of the worst nights of the semester, and somehow you turned a blackout into the warmest night we had all year. Candles, bad trivia questions, and you, making sure nobody was sitting alone in the dark corners of the room. You don't wait for the lights to come back on. You just become one.",
+      memory: "The blackout night you turned into candlelit trivia, on purpose, for everyone else."
+    },
+    "orbit": {
+      name: "Kai Nakamura",
+      photo: "https://i.pravatar.cc/400?img=68",
+      letter: "Kai — every group project this year had a version of chaos in it, and somehow you were always the quiet center everyone else ended up circling back to. Not the loudest voice in the room. Just the steadiest one. People don't always notice gravity. They just notice they keep coming back to the same place. That place was you.",
+      memory: "The group project chaos that somehow always found its way back to you."
+    },
+    "canvas": {
+      name: "Zara Ibrahim",
+      photo: "https://i.pravatar.cc/400?img=29",
+      letter: "Zara — on move-out day, when everything already felt like it was ending, you picked up a paintbrush and gave us one more thing to build together. That mural has nine sets of handprints on it because you refused to let the year end without one. You saw a blank wall and a room full of people who weren't ready to say goodbye, and you gave us something to do with our hands instead.",
+      memory: "The mural we painted together on move-out day, when no one wanted to say the actual goodbye."
+    },
+    "tempo": {
+      name: "Lucas Ferreira",
+      photo: "https://i.pravatar.cc/400?img=14",
+      letter: "Lucas — you started a drumline in the dorm hallway at midnight with two pens and an upside-down trash can, and within ten minutes half the floor was out of their rooms laughing. You have never once waited for permission to make a moment happen. Wherever you go next, that hallway is going to miss its tempo.",
+      memory: "The midnight hallway drumline that got four RAs and zero complaints."
+    },
+    "meridian": {
+      name: "Priya Sharma",
+      photo: "https://i.pravatar.cc/400?img=32",
+      letter: "Priya — you planned a sunrise-to-sunset road trip on a whim, with a group chat message and less than twelve hours' notice, and eight people said yes without hesitating. That's the kind of trust you built this year — not because you asked for it, but because you always showed up first. You turned a random Tuesday into the kind of day people tell stories about for years.",
+      memory: "The sunrise-to-sunset road trip you planned on a whim, and somehow everyone showed up for."
+    }
+  };
+
+  /* ---------------------------------------------------
+   *  AOS INIT
+   * --------------------------------------------------- */
+  AOS.init({ duration: 900, once: true, easing: 'ease-out-cubic' });
+
+  /* ---------------------------------------------------
+   *  AMBIENT AUDIO (Web Audio API — no external file)
+   * --------------------------------------------------- */
+  let audioCtx = null;
+  let ambientNodes = [];
+  let ambientPlaying = false;
+
+  function buildAmbient(){
+    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    const master = audioCtx.createGain();
+    master.gain.value = 0.0001;
+    master.connect(audioCtx.destination);
+
+    const filter = audioCtx.createBiquadFilter();
+    filter.type = 'lowpass';
+    filter.frequency.value = 900;
+    filter.connect(master);
+
+    const freqs = [98, 146.83, 220];
+    freqs.forEach((f, i) => {
+      const osc = audioCtx.createOscillator();
+      osc.type = i === 2 ? 'triangle' : 'sine';
+      osc.frequency.value = f;
+
+      const g = audioCtx.createGain();
+      g.gain.value = 0.18 / (i + 1);
+
+      const lfo = audioCtx.createOscillator();
+      lfo.frequency.value = 0.05 + i * 0.03;
+      const lfoGain = audioCtx.createGain();
+      lfoGain.gain.value = 0.06;
+      lfo.connect(lfoGain);
+      lfoGain.connect(g.gain);
+
+      osc.connect(g);
+      g.connect(filter);
+
+      osc.start();
+      lfo.start();
+
+      ambientNodes.push(osc, lfo);
+    });
+
+    master.gain.linearRampToValueAtTime(0.22, audioCtx.currentTime + 2.5);
+    ambientNodes.push(master);
+    return master;
+  }
+
+  let masterGainRef = null;
+
+  function toggleAmbient(){
+    const icon = document.getElementById('ambientIcon').querySelector('i');
+    const eq = document.getElementById('eqBars').parentElement;
+
+    if(!ambientPlaying){
+      if(!audioCtx){
+        masterGainRef = buildAmbient();
+      } else {
+        audioCtx.resume();
+        masterGainRef.gain.linearRampToValueAtTime(0.22, audioCtx.currentTime + 1.2);
+      }
+      ambientPlaying = true;
+      icon.classList.remove('fa-play');
+      icon.classList.add('fa-pause');
+      eq.classList.add('playing');
+    } else {
+      if(masterGainRef && audioCtx){
+        masterGainRef.gain.linearRampToValueAtTime(0.0001, audioCtx.currentTime + 0.8);
+      }
+      ambientPlaying = false;
+      icon.classList.remove('fa-pause');
+      icon.classList.add('fa-play');
+      eq.classList.remove('playing');
+    }
+  }
+  document.getElementById('ambientToggle').addEventListener('click', toggleAmbient);
+
+  /* ---------------------------------------------------
+   *  THEME SONG — cassette / vinyl synth player
+   * --------------------------------------------------- */
+  let musicCtx = null;
+  let musicPlaying = false;
+  let musicTimer = null;
+  let noteTimer = null;
+  let elapsed = 0;
+  const DURATION = 222; // 3:42 in seconds (simulated)
+  const melody = [261.63, 329.63, 392.00, 329.63, 440.00, 392.00, 329.63, 293.66];
+  let noteIndex = 0;
+
+  function playNote(freq){
+    if(!musicCtx) return;
+    const osc = musicCtx.createOscillator();
+    const g = musicCtx.createGain();
+    osc.type = 'sine';
+    osc.frequency.value = freq;
+    g.gain.value = 0.0001;
+    osc.connect(g);
+    g.connect(musicCtx.destination);
+    const now = musicCtx.currentTime;
+    g.gain.linearRampToValueAtTime(0.09, now + 0.05);
+    g.gain.exponentialRampToValueAtTime(0.0001, now + 0.9);
+    osc.start(now);
+    osc.stop(now + 1);
+  }
+
+  function formatTime(sec){
+    const m = Math.floor(sec / 60);
+    const s = Math.floor(sec % 60).toString().padStart(2, '0');
+    return m + ':' + s;
+  }
+
+  function toggleMusic(){
+    const icon = document.getElementById('musicIcon');
+    const vinyl = document.getElementById('vinylDisc');
+    const reelL = document.getElementById('reelLeft');
+    const reelR = document.getElementById('reelRight');
+
+    if(!musicPlaying){
+      if(!musicCtx){ musicCtx = new (window.AudioContext || window.webkitAudioContext)(); }
+      else { musicCtx.resume(); }
+
+      musicPlaying = true;
+      icon.classList.remove('fa-play');
+      icon.classList.add('fa-pause');
+      vinyl.classList.add('spin');
+      reelL.classList.add('spin');
+      reelR.classList.add('spin');
+
+      noteTimer = setInterval(() => {
+        playNote(melody[noteIndex % melody.length]);
+        noteIndex++;
+      }, 700);
+
+      musicTimer = setInterval(() => {
+        elapsed += 0.2;
+        if(elapsed >= DURATION){ elapsed = 0; }
+        const pct = (elapsed / DURATION) * 100;
+        document.getElementById('musicProgress').style.width = pct + '%';
+        document.getElementById('musicTime').textContent = formatTime(elapsed) + ' / 3:42';
+      }, 200);
+    } else {
+      musicPlaying = false;
+      icon.classList.remove('fa-pause');
+      icon.classList.add('fa-play');
+      vinyl.classList.remove('spin');
+      reelL.classList.remove('spin');
+      reelR.classList.remove('spin');
+      clearInterval(musicTimer);
+      clearInterval(noteTimer);
+    }
+  }
+  document.getElementById('musicToggle').addEventListener('click', toggleMusic);
+
+  /* ---------------------------------------------------
+   *  LIGHTBOX
+   * --------------------------------------------------- */
+  const lightbox = document.getElementById('lightbox');
+  document.querySelectorAll('.gallery-item img').forEach(img => {
+    img.addEventListener('click', () => {
+      document.getElementById('lightboxImg').src = img.src;
+      document.getElementById('lightboxImg').alt = img.alt;
+      document.getElementById('lightboxCaption').textContent = img.alt;
+      lightbox.classList.remove('hidden');
+      lightbox.classList.add('flex');
+    });
+  });
+  function closeLightbox(){
+    lightbox.classList.add('hidden');
+    lightbox.classList.remove('flex');
+  }
+  document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', (e) => { if(e.target === lightbox) closeLightbox(); });
+
+  /* ---------------------------------------------------
+   *  HINT MODAL
+   * --------------------------------------------------- */
+  const hintModal = document.getElementById('hintModal');
+  document.getElementById('hintOpen').addEventListener('click', () => {
+    hintModal.classList.remove('hidden');
+    hintModal.classList.add('flex');
+  });
+  function closeHint(){
+    hintModal.classList.add('hidden');
+    hintModal.classList.remove('flex');
+  }
+  document.getElementById('hintClose').addEventListener('click', closeHint);
+  hintModal.addEventListener('click', (e) => { if(e.target === hintModal) closeHint(); });
+
+  /* ---------------------------------------------------
+   *  VAULT — passcode validation
+   * --------------------------------------------------- */
+  const vaultForm = document.getElementById('vaultForm');
+  const vaultInput = document.getElementById('vaultInput');
+  const vaultInputWrap = document.getElementById('vaultInputWrap');
+  const vaultError = document.getElementById('vaultError');
+
+  vaultForm.addEventListener('submit', function(e){
+    e.preventDefault();
+    const key = vaultInput.value.trim().toLowerCase();
+    const data = LETTERS_DATA[key];
+
+    if(data){
+      vaultError.classList.add('hidden');
+      vaultInputWrap.classList.remove('shake');
+      openLetter(data, key);
+      vaultInput.value = '';
+    } else {
+      vaultError.classList.remove('hidden');
+      vaultInputWrap.classList.remove('shake');
+      void vaultInputWrap.offsetWidth; // restart animation
+      vaultInputWrap.classList.add('shake');
+    }
+  });
+
+  /* ---------------------------------------------------
+   *  LETTER MODAL
+   * --------------------------------------------------- */
+  const letterModal = document.getElementById('letterModal');
+
+  function openLetter(data, key){
+    document.getElementById('letterPhoto').src = data.photo;
+    document.getElementById('letterPhoto').alt = data.name;
+    document.getElementById('letterName').textContent = data.name;
+    document.getElementById('letterKeyword').textContent = key;
+    document.getElementById('letterBody').textContent = data.letter;
+    document.getElementById('letterMemory').textContent = data.memory;
+    document.getElementById('letterStamp').textContent = 'Checked Out — ' + data.name.split(' ')[0];
+
+    letterModal.classList.remove('hidden');
+    letterModal.classList.add('flex');
+  }
+  function closeLetter(){
+    letterModal.classList.add('hidden');
+    letterModal.classList.remove('flex');
+  }
+  document.getElementById('letterClose').addEventListener('click', closeLetter);
+  letterModal.addEventListener('click', (e) => { if(e.target === letterModal) closeLetter(); });
+
+  /* ---------------------------------------------------
+   *  ESCAPE KEY CLOSES ANY OPEN MODAL
+   * --------------------------------------------------- */
+  document.addEventListener('keydown', (e) => {
+    if(e.key === 'Escape'){
+      closeLightbox();
+      closeHint();
+      closeLetter();
+    }
+  });
+
+})();
+</script>
+</body>
+</html>

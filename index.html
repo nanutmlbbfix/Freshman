@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="description"
+    content="Tempat kecil untuk menyimpan cerita, tawa, dan kenangan selama First Year Program ABN13. Karena beberapa momen terlalu berharga untuk dilupakan.">
+  <title>ABN13 Archive — First Year Program Memories</title>
+  <meta name="description" content="A farewell library, built for the nine freshmen who made a year unforgettable.">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap"
+    rel="stylesheet">
+
+  <!-- FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- AOS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.1/aos.css">
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            obsidian: {
+              DEFAULT: '#0a0a0c',
+              100: '#0d0d10',
+              200: '#111114',
+              300: '#17171b',
+              400: '#1e1e23',
+            },
+            gold: {
+              DEFAULT: '#c9a24b',
+              light: '#e6c778',
+              dim: '#8a6f34',
+              paper: '#f2e6c9',
+            },
+          },
+          fontFamily: {
+            serif: ['"Cormorant Garamond"', 'serif'],
+            sans: ['Inter', 'sans-serif'],
+          },
+          boxShadow: {
+            gold: '0 0 40px -8px rgba(201,162,75,0.35)',
+          },
+        },
+      },
+    };
+  </script>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="bg-obsidian text-neutral-200 font-sans antialiased overflow-x-hidden">
+
+  <!-- ============ AMBIENT GRAIN / VIGNETTE OVERLAY ============ -->
+  <div class="grain-overlay"></div>
+  <div class="vignette-overlay"></div>
+
+  <!-- ============ FLOATING AMBIENT AUDIO BAR ============ -->
+  <div id="ambient-player" class="ambient-bar">
+    <button id="ambientToggle" class="ambient-btn" aria-label="Toggle ambient library sound">
+      <i class="fa-solid fa-play" id="ambientIcon"></i>
+    </button>
+    <div class="ambient-meta">
+      <span class="ambient-title">A Sky Full Of Stars</span>
+      <div class="ambient-wave">
+        <span></span><span></span><span></span><span></span><span></span>
+      </div>
+    </div>
+    <input type="range" id="ambientVolume" min="0" max="1" step="0.01" value="0.35" class="ambient-volume"
+      aria-label="Ambient volume">
+    <audio id="ambientAudio" loop preload="none">
+      <source src="song.mp3" type="audio/mpeg">
+    </audio>
+  </div>
+
+  <!-- ============ NAV DOTS ============ -->
+  <nav class="side-nav" aria-label="Section navigation">
+    <a href="#hero" class="side-dot active" data-label="Threshold"></a>
+    <a href="#gallery" class="side-dot" data-label="Gallery"></a>
+    <a href="#timeline" class="side-dot" data-label="Chronicle"></a>
+    <a href="#music" class="side-dot" data-label="The Anthem"></a>
+    <a href="#vault" class="side-dot" data-label="The Vault"></a>
+  </nav>
+
+  <!-- ============ 1. HERO ============ -->
+  <section id="hero" class="relative min-h-screen flex flex-col items-center justify-center px-6 text-center">
+    <canvas id="particleCanvas" class="absolute inset-0 w-full h-full pointer-events-none"></canvas>
+
+    <div class="relative z-10 max-w-4xl mx-auto" data-aos="fade-up" data-aos-duration="1400">
+      <p class="eyebrow mb-6">FIRST YEAR PROGRAM • ABN13</p>
+
+      <h1 class="hero-title">
+        Every memory<br>
+        has a <span class="italic text-gold-light">home.</span>
+      </h1>
+
+      <p class="hero-sub mt-8 max-w-2xl mx-auto">
+        Website kecil ini dibuat buat nyimpen sebagian kecil perjalanan kita selama First Year Program(NEXT).
+        Entah kamu Freshman, Freshman Leader, FYP Leader, atau siapa pun yang pernah jadi bagian dari cerita ini...
+        semoga suatu hari nanti kita balik ke sini dan senyum sendiri karena pernah ada di titik ini.
+      </p>
+
+      <div class="mt-14 flex flex-col items-center gap-2 text-neutral-500">
+        <span class="text-xs tracking-[0.3em] uppercase">Mulai Jelajahi</span>
+        <i class="fa-solid fa-chevron-down animate-bounce text-gold/70"></i>
+      </div>
+    </div>
+
+    <div class="hero-frame" aria-hidden="true"></div>
+  </section>
+
+  <!-- ============ 2. GALLERY ============ -->
+  <section id="gallery" class="relative py-32 px-6 md:px-12 lg:px-20">
+    <div class="max-w-6xl mx-auto">
+      <div class="section-heading" data-aos="fade-up">
+        <p class="eyebrow">Galeri Kenangan</p>
+        <h2 class="section-title">Potongan Cerita Kita</h2>
+        <p class="section-sub">Nggak semua momen sempat kita foto. Tapi semoga yang ada di sini cukup buat bikin kita
+          ingat lagi.</p>
+      </div>
+
+      <div id="bentoGrid" class="bento-grid mt-16">
+        <!-- injected by script.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Lightbox -->
+  <div id="lightbox" class="lightbox">
+    <button id="lightboxClose" class="lightbox-close" aria-label="Close image"><i
+        class="fa-solid fa-xmark"></i></button>
+    <button id="lightboxPrev" class="lightbox-nav lightbox-prev" aria-label="Previous image"><i
+        class="fa-solid fa-chevron-left"></i></button>
+    <div class="lightbox-content">
+      <img id="lightboxImg" src="" alt="">
+      <p id="lightboxCaption" class="lightbox-caption"></p>
+    </div>
+    <button id="lightboxNext" class="lightbox-nav lightbox-next" aria-label="Next image"><i
+        class="fa-solid fa-chevron-right"></i></button>
+  </div>
+
+  <!-- ============ 3. TIMELINE ============ -->
+  <section id="timeline" class="relative py-32 px-6 md:px-12 lg:px-20 bg-obsidian-100">
+    <div class="max-w-4xl mx-auto">
+      <div class="section-heading" data-aos="fade-up">
+        <p class="eyebrow">Journey</p>
+        <h2 class="section-title">Awalnya Semua Orang Asing</h2>
+        <p class="section-sub">Lalu perlahan berubah jadi cerita yang bakal susah dilupain.</p>
+      </div>
+
+      <div class="timeline-wrap mt-20">
+        <div class="timeline-line" aria-hidden="true"></div>
+
+        <div class="timeline-card" data-aos="fade-up" data-aos-delay="0">
+          <div class="timeline-dot"><i class="fa-solid fa-door-open"></i></div>
+          <div class="timeline-body">
+            <span class="timeline-chapter">Chapter One</span>
+            <h3>Day 1</h3>
+            <p>Masih canggung.
+              Masih saling lihat-lihatan.
+              Belum hafal nama.
+              Belum tahu kalau beberapa minggu ke depan bakal penuh cerita.</p>
+          </div>
+        </div>
+
+        <div class="timeline-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="timeline-dot"><i class="fa-solid fa-cloud-showers-heavy"></i></div>
+          <div class="timeline-body">
+            <span class="timeline-chapter">Chapter Two</span>
+            <h3>Closer</h3>
+            <p>Games, diskusi, ketawa, salah jawab, bingung bareng.
+              Pelan-pelan semua mulai terasa lebih akrab.</p>
+          </div>
+        </div>
+
+        <div class="timeline-card" data-aos="fade-up" data-aos-delay="0">
+          <div class="timeline-dot"><i class="fa-solid fa-book-open"></i></div>
+          <div class="timeline-body">
+            <span class="timeline-chapter">Chapter Three</span>
+            <h3>Belajar & Bertumbuh</h3>
+            <p>Bukan cuma belajar tentang kampus.
+              Tapi juga belajar kerja sama, menghargai orang lain, dan keluar dari zona nyaman.</p>
+          </div>
+        </div>
+
+        <div class="timeline-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="timeline-dot"><i class="fa-solid fa-fire"></i></div>
+          <div class="timeline-body">
+            <span class="timeline-chapter">Chapter Four</span>
+            <h3>See you later</h3>
+            <p>Mungkin programnya selesai.
+              Tapi semoga cerita yang dimulai di sini nggak ikut selesai.
+              Karena beberapa pertemuan memang ditakdirkan buat dikenang.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 4. MUSIC ============ -->
+  <section id="music" class="relative py-32 px-6 md:px-12 lg:px-20 overflow-hidden">
+    <div class="max-w-5xl mx-auto">
+      <div class="section-heading" data-aos="fade-up">
+        <p class="eyebrow">The Anthem</p>
+        <h2 class="section-title">Our Song, On Repeat</h2>
+        <p class="section-sub">The one track that played on every drive, every late night, every goodbye.</p>
+      </div>
+
+      <div class="music-console mt-16" data-aos="zoom-in">
+        <div class="vinyl-wrap">
+          <div class="vinyl-shadow"></div>
+          <div id="vinylRecord" class="vinyl-record">
+            <div class="vinyl-label">
+              <span class="vinyl-label-title">The Library</span>
+              <span class="vinyl-label-sub">of Memories</span>
+            </div>
+          </div>
+          <div id="tonearm" class="tonearm"></div>
+        </div>
+
+        <div class="music-controls">
+          <p class="track-title">A Sky Full Of Stars</p>
+          <p class="track-artist">The Freshman ABN13 · Class Anthem</p>
+
+          <div class="music-progress-wrap">
+            <span id="musicCurrent" class="music-time">0:00</span>
+            <input type="range" id="musicProgress" min="0" max="100" value="0" class="music-progress"
+              aria-label="Song progress">
+            <span id="musicDuration" class="music-time">0:00</span>
+          </div>
+
+          <div class="music-buttons">
+            <button id="musicPlay" class="music-play-btn" aria-label="Play song">
+              <i class="fa-solid fa-play" id="musicPlayIcon"></i>
+            </button>
+          </div>
+        </div>
+
+        <audio id="musicAudio" preload="none">
+          <source src="song.mp3" type="audio/mpeg">
+        </audio>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 5. VAULT (SECRET PORTAL) ============ -->
+  <section id="vault" class="relative py-32 px-6 md:px-12 lg:px-20 bg-obsidian-100">
+    <div class="max-w-2xl mx-auto text-center">
+      <div data-aos="fade-up">
+        <p class="eyebrow">Restricted Section</p>
+        <h2 class="section-title">The Vault</h2>
+        <p class="section-sub">
+          Somewhere in this year, you earned a name only the two of us would recognize.
+          Type it below to unlock your letter.
+        </p>
+      </div>
+
+      <div class="vault-card mt-14" data-aos="zoom-in">
+        <div class="vault-slot" aria-hidden="true">
+          <i class="fa-solid fa-book-bookmark"></i>
+        </div>
+
+        <form id="vaultForm" class="vault-form" autocomplete="off">
+          <label for="vaultInput" class="vault-label">Enter your keyword</label>
+          <input type="text" id="vaultInput" class="vault-input" placeholder="e.g. skittles"
+            aria-describedby="vaultError">
+          <button type="submit" class="vault-submit">
+            <span>Unlock</span>
+            <i class="fa-solid fa-key"></i>
+          </button>
+        </form>
+
+        <p id="vaultError" class="vault-error"></p>
+
+        <button id="vaultHintBtn" class="vault-hint-btn">
+          <i class="fa-solid fa-circle-question"></i> Need a hint?
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Hint Modal -->
+  <div id="hintModal" class="modal-overlay">
+    <div class="hint-modal-card" data-aos="zoom-in">
+      <button id="hintClose" class="modal-close" aria-label="Close hint"><i class="fa-solid fa-xmark"></i></button>
+      <i class="fa-solid fa-feather text-gold text-2xl mb-4"></i>
+      <h3 class="hint-title">A Small Hint</h3>
+      <p class="hint-text">
+        It isn't your real name. It's the nickname that came from an inside joke,
+        a running bit, or that one story the group still brings up. If you were there
+        for it, you'll know it. Lowercase, one word, no spaces.
+      </p>
+    </div>
+  </div>
+
+  <!-- ============ 6. LETTER MODAL ============ -->
+  <div id="letterModal" class="modal-overlay letter-overlay">
+    <div class="letter-card" data-aos="zoom-in">
+      <button id="letterClose" class="modal-close" aria-label="Close letter"><i class="fa-solid fa-xmark"></i></button>
+
+      <div class="letter-inner">
+        <div class="letter-photo-wrap">
+          <img id="letterPhoto" src="" alt="">
+          <div class="letter-photo-frame"></div>
+        </div>
+
+        <div class="letter-text-wrap">
+          <p class="letter-eyebrow">Personal Letter · Restricted Section</p>
+          <h3 id="letterName" class="letter-name"></h3>
+          <p id="letterBody" class="letter-body"></p>
+
+          <div class="letter-memory-box">
+            <span class="letter-memory-label"><i class="fa-solid fa-star"></i> Special Memory</span>
+            <p id="letterMemory" class="letter-memory-text"></p>
+          </div>
+
+          <p class="letter-sign">With more love than this page can hold,<br><span>Fathir (Your FL)</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="relative py-16 px-6 text-center border-t border-white/5">
+    <p class="footer-mark">The Library of Memories</p>
+    <p class="footer-sub">Nine names, one shelf, forever checked out to each other.</p>
+    <p class="footer-copy">Closed for the season — but never for good. &copy; <span id="year"></span></p>
+    <p class="footer-copy">See you all guys. &copy; <span id="">- Fathir</span></p>
+  </footer>
+
+  <!-- ============ SCRIPTS ============ -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.1/aos.js"></script>
+  <script src="script.js"></script>
+</body>
+
+</html>
