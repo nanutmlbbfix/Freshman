@@ -42,8 +42,8 @@ const LETTERS_DATA = {
   relentless: {
     name: "Nabil",
     photo: "nabil.jpg",
-    letter: `Nabil, aku masih ingat ketika kamu bercerita tentang targetmu untuk meraih SIS Excellence di tahun pertama. Aku suka cara berpikirmu yang berani menetapkan tujuan tinggi. Jalan menuju target itu mungkin tidak akan mudah, tetapi selama kamu terus belajar dan tetap konsisten, aku percaya hasilnya akan mengikuti. Jangan takut gagal, karena setiap langkah kecil tetap membawamu lebih dekat kepada impianmu.`,
-    memory: `Aku paling mengingat keberanianmu untuk memiliki target yang jelas sejak awal perjalanan kuliahmu.`
+    letter: `Nabil, gua masih ingat ketika lu bercerita tentang targetmu untuk meraih SIS Excellence di tahun pertama. Gua suka cara berpikir lu yang berani menetapkan tujuan tinggi. Jalan menuju target itu mungkin tidak akan mudah, tetapi selama lu terus belajar dan tetap konsisten, gua percaya hasilnya akan mengikuti. Jangan takut gagal, karena setiap langkah kecil tetap membawa lu lebih dekat ke mimpi-mimpi lu.`,
+    memory: `Gua paling mengingat keberanianmu untuk memiliki target yang jelas sejak awal perjalanan kuliahmu dan bahkan dari sebelum kuliah. Terlihat dari konsistensi workout lu bil. Semangat men😁`
   },
 
   lily: {
@@ -63,8 +63,8 @@ const LETTERS_DATA = {
   spark: {
     name: "Farrel",
     photo: "farrel.jpg",
-    letter: `Farrel, aku melihat kamu sebagai orang yang sebenarnya memiliki potensi besar. Kamu berani, mudah beradaptasi ketika sudah merasa nyaman, dan menurutku memiliki kemampuan yang masih bisa berkembang jauh. Yang aku harapkan hanyalah kamu bisa lebih konsisten terhadap apa yang ingin kamu capai. Potensi tanpa usaha akan tetap menjadi potensi. Aku percaya kamu mampu menjadi pribadi yang jauh lebih hebat jika mau terus bertumbuh.`,
-    memory: `Hal yang paling aku ingat darimu adalah bagaimana kamu berubah dari sosok yang cukup pendiam menjadi jauh lebih aktif ketika mulai merasa nyaman dengan orang-orang di sekitarmu.`
+    letter: `Farrel, gua melihat lu sebagai orang yang sebenarnya memiliki potensi besar. Lu berani, gampang beradaptasi ketika sudah merasa nyaman, dan menurut gua memiliki kemampuan yang masih bisa berkembang jauh. Yang gua harapkan cuma lu bisa lebih konsisten terhadap apa yang ingin kamu capai. Potensi tanpa usaha akan tetap menjadi potensi. Gua yakin lu mampu menjadi pribadi yang jauh lebih hebat kalo lu mau terus bertumbuh.`,
+    memory: `Hal yang paling gua ingat dari lu adalah bagaimana lu berubah dari sosok yang cukup pendiam menjadi jauh lebih aktif ketika mulai merasa nyaman dengan orang-orang di sekitar lu. iya gua perhatiin lu rel.`
   },
 };
 
