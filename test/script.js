@@ -55,7 +55,7 @@ const LETTERS_DATA = {
 
   wanderer: {
     name: "Andhika Putra",
-    photo: "unknown.jpg",
+    photo: "andhika-putra.jpg",
     letter: `Dhika, mungkin saat ini kamu masih merasa belum benar-benar menemukan arah yang ingin kamu tuju, dan menurutku itu bukan sesuatu yang salah. Banyak orang menemukan passion mereka justru setelah mencoba berbagai hal. Jangan terburu-buru membandingkan dirimu dengan orang lain. Teruslah bereksplorasi, mencoba, dan belajar. Aku percaya suatu hari nanti kamu akan menemukan sesuatu yang benar-benar membuatmu bersemangat.`,
     memory: `Aku paling mengingat bagaimana kamu selalu mencoba memahami dirimu sendiri, meskipun mungkin kamu belum menemukan semua jawabannya hari ini.`
   },
@@ -65,96 +65,6 @@ const LETTERS_DATA = {
     photo: "farrel.jpg",
     letter: `Farrel, gua melihat lu sebagai orang yang sebenarnya memiliki potensi besar. Lu berani, gampang beradaptasi ketika sudah merasa nyaman, dan menurut gua memiliki kemampuan yang masih bisa berkembang jauh. Yang gua harapkan cuma lu bisa lebih konsisten terhadap apa yang ingin kamu capai. Potensi tanpa usaha akan tetap menjadi potensi. Gua yakin lu mampu menjadi pribadi yang jauh lebih hebat kalo lu mau terus bertumbuh.`,
     memory: `Hal yang paling gua ingat dari lu adalah bagaimana lu berubah dari sosok yang cukup pendiam menjadi jauh lebih aktif ketika mulai merasa nyaman dengan orang-orang di sekitar lu. iya gua perhatiin lu rel.`
-  },
-  ec: {
-    name: "David",
-    photo: "david.jpeg",
-    letter: `gimana nih kuliahnya so far? Aku harap menyenangkan dan seru abis yaa..
-    Sebelumnya, aku mau bilang thankyou udah ngikutin rangkaian acara FYP di ABN 13, thankyou udah aktif banget pas waktu sesi, lu keren banget asli.
-    Sukses terus kuliahnyaa, jangan nakal & semangat cari temen baru! Kalau mau nanya" boleh banget pc aku, dan kalau ketemu, sapa aja yaa!
-    Good luck on your college ventures!.`,
-    memory: `Keaktifan kamu di kelas & curiosity kamu yang sangat tinggi.`
-  },
-  ec: {
-    name: "David",
-    photo: "david.jpeg",
-    letter: `gimana nih kuliahnya so far? Aku harap menyenangkan dan seru abis yaa..
-    Sebelumnya, aku mau bilang thankyou udah ngikutin rangkaian acara FYP di ABN 13, thankyou udah aktif banget pas waktu sesi, lu keren banget asli.
-    Sukses terus kuliahnyaa, jangan nakal & semangat cari temen baru! Kalau mau nanya" boleh banget pc aku, dan kalau ketemu, sapa aja yaa!
-    Good luck on your college ventures!.`,
-    memory: `Keaktifan kamu di kelas & curiosity kamu yang sangat tinggi.`
-  },
-  ec: {
-    name: "David",
-    photo: "david.jpeg",
-    letter: `gimana nih kuliahnya so far? Aku harap menyenangkan dan seru abis yaa..
-    Sebelumnya, aku mau bilang thankyou udah ngikutin rangkaian acara FYP di ABN 13, thankyou udah aktif banget pas waktu sesi, lu keren banget asli.
-    Sukses terus kuliahnyaa, jangan nakal & semangat cari temen baru! Kalau mau nanya" boleh banget pc aku, dan kalau ketemu, sapa aja yaa!
-    Good luck on your college ventures!.`,
-    memory: `Keaktifan kamu di kelas & curiosity kamu yang sangat tinggi.`
-  },
-  ng: {
-    name: "Steven",
-    photo: "steven.jpeg",
-    letter: `Haloo Steven, gimana nih kuliahnya so far? Aku harap menyenangkan dan seru abis yaa..
-    Sebelumnya, aku mau bilang thankyou udah ngikutin rangkaian acara FYP di ABN 13, thankyou atas segala kontribusinya selama perjalanan sesi berlangsung!
-    Sukses terus kuliahnyaa, jangan nakal & semangat cari temen baru! Kalau mau nanya" boleh banget pc aku, dan kalau ketemu, sapa aja yaa..
-    Good luck on your college ventures!.`,
-    memory: `Lu itu reserved, calm, ga heboh gimana banget, and that's nice.`
-  },
-  raf: {
-    name: "Rafaldi",
-    photo: "rafaldi.jpeg",
-    letter: `Haloo Rafaldi, gimana nih kuliahnya so far? Aku harap menyenangkan dan seru abis yaa..
-    Sebelumnya, aku mau bilang thankyou udah ngikutin rangkaian acara FYP di ABN 13, thankyou atas segala kontribusinya selama perjalanan sesi berlangsung, thankyou udah aktif banget sama sirkel kamu itu kalo sesi!
-    Sukses terus kuliahnyaa, jangan nakal & semangat cari temen baru! Kalau mau nanya" boleh banget pc aku, dan kalau ketemu, sapa aja yaa..
-    Good luck on your college ventures!`,
-    memory: `Lu itu reserved, calm, ga heboh gimana banget, and that's nice.`,
-  },
-  kei: {
-    name: "Keisha",
-    photo: "keisha.jpeg",
-    letter: `Haloo Keisha, gimana nih kuliahnya so far? Aku harap menyenangkan dan seru abis yaa..
-    Sebelumnya, aku mau bilang thankyou udah ngikutin rangkaian acara FYP di ABN 13, thankyou atas segala kontribusinya selama perjalanan sesi berlangsung!
-    Sukses terus kuliahnyaa, jangan nakal & semangat cari temen baru! Kalau mau nanya" boleh banget pc aku, dan kalau ketemu, sapa aja yaa..
-    Good luck on your college ventures!`,
-    memory: `Kamu itu calm, reserved, dan collected, ga heboh gimana", and that's nice.`,
-  },
-  mey: {
-    name: "Myiesa",
-    photo: "mey.jpeg",
-    letter: `Haloo Myiesa, gimana nih kuliahnya so far? Aku harap menyenangkan dan seru abis yaa..
-    Sebelumnya, aku mau bilang thankyou udah ngikutin rangkaian acara FYP di ABN 13, thankyou atas segala kontribusinya selama perjalanan sesi berlangsung!
-    Sukses terus kuliahnyaa, jangan nakal & semangat cari temen baru! Kalau mau nanya" boleh banget pc aku, dan kalau ketemu, sapa aja yaa..
-    Good luck on your college ventures!`,
-    memory: `Special memory: Kamu itu calm, reserved, dan collected, ga heboh gimana", and that's nice.`,
-  },
-  beasiswa: {
-    name: "Rayhan",
-    photo: "rey.jpeg",
-    letter: `Haloo Rayhan, gimana nih kuliahnya so far? Aku harap menyenangkan dan seru abis yaa..
-    Sebelumnya, aku mau bilang thankyou udah ngikutin rangkaian acara FYP di ABN 13, thankyou atas segala kontribusinya selama perjalanan sesi berlangsung!
-    Sukses terus kuliahnyaa, jangan nakal & semangat cari temen baru! Kalau mau nanya" boleh banget pc aku, dan kalau ketemu, sapa aja yaa..
-    Good luck on your college ventures, pertahankan beasiswa yang kamu dapet itu!`,
-    memory: `Special memory: Kamu itu calm, reserved, dan collected, ga heboh gimana", and that's nice.`,
-  },
-  fmtask: {
-    name: "Elberth",
-    photo: "elberth.jpeg",
-    letter: `Haloo Elberth, gimana nih kuliahnya so far? Aku harap menyenangkan dan seru abis yaa..
-    Sebelumnya, aku mau bilang thankyou udah ngikutin rangkaian acara FYP di ABN 13, thankyou atas segala kontribusinya selama perjalanan sesi berlangsung!
-    Sukses terus kuliahnyaa, jangan nakal & semangat cari temen baru! Kalau mau nanya" boleh banget pc aku, dan kalau ketemu, sapa aja yaa..
-    Good luck on your college ventures!`,
-    memory: `Lu mepet banget kerjain tugasnya, gw sendiri yang repot nagihnya menn. Kerjain yaa.`,
-  },
-  jac: {
-    name: "Jacob",
-    photo: "unknown.jpeg",
-    letter: `Haloo Jacob, gimana nih kuliahnya so far? Aku harap menyenangkan dan seru abis yaa..
-    Sebelumnya, aku mau bilang thankyou udah ngikutin rangkaian acara FYP di ABN 13, thankyou atas segala kontribusinya selama perjalanan sesi berlangsung!
-    Sukses terus kuliahnyaa, jangan nakal & semangat cari temen baru! Kalau mau nanya" boleh banget pc aku, dan kalau ketemu, sapa aja yaa..
-    Good luck on your college ventures!`,
-    memory: `Special memory: Pin Hatsune Miku & Teto di tas lu gokil banget bro, wkwk.`,
   },
 };
 
@@ -176,12 +86,12 @@ const GALLERY_DATA = [
 const GROUP_DATA = {
   mainPhoto: "fathir-group.jpg",
   memories: [
-    { img: "show.jpeg", caption: "Orientation Day" },
-    { img: "teach.jpeg", caption: "Table Talks" },
-    { img: "show3.jpeg", caption: "Appreciate Day" },
-    { img: "pic2.jpeg", caption: "Talent Show" },
-    { img: "moment2.jpeg", caption: "Sesi Bimbingan" },
-    { img: "closing.jpeg", caption: "Closing Ceremony" },
+    { img: "group-memory1.jpg", caption: "Orientation Day" },
+    { img: "group-memory2.jpg", caption: "Table Talks" },
+    { img: "group-memory3.jpg", caption: "Appreciate Day" },
+    { img: "group-memory4.jpg", caption: "Talent Show" },
+    { img: "group-memory5.jpg", caption: "Sesi Bimbingan" },
+    { img: "group-memory6.jpg", caption: "Closing Ceremony" },
   ],
 };
 
@@ -386,7 +296,7 @@ function initVault() {
     }
 
     // Founder's own drawer — opens the group portrait instead of a personal letter.
-    if (raw === "freshman") {
+    if (raw === "fathir") {
       error.classList.remove("show");
       error.textContent = "";
       input.value = "";
@@ -482,12 +392,12 @@ function closeLetterModal() {
 ============================================================ */
 function renderGroupPortrait() {
   document.getElementById("groupMainPhoto").src = GROUP_DATA.mainPhoto;
-  document.getElementById("groupMainPhoto").alt = "Kebersamaan ABN 13";
+  document.getElementById("groupMainPhoto").alt = "Fathir bersama 9 freshman";
 
   const facesContainer = document.getElementById("groupFaces");
   const leaderFace = `
     <div class="group-face is-leader">
-      <img src="fathir.jpeg" alt="Fathir">
+      <img src="groupF.jpeg" alt="Fathir">
       <span>Fathir<br>Freshman Leader</span>
     </div>
   `;
@@ -645,24 +555,24 @@ function initSideNav() {
   });
 }
 
-const glow = document.querySelector(".cursor-glow");
+const glow=document.querySelector(".cursor-glow");
 
-window.addEventListener("mousemove", (e) => {
-  glow.style.left = e.clientX + "px";
-  glow.style.top = e.clientY + "px";
+window.addEventListener("mousemove",(e)=>{
+    glow.style.left=e.clientX+"px";
+    glow.style.top=e.clientY+"px";
 });
 
-window.addEventListener("scroll", () => {
+window.addEventListener("scroll",()=>{
 
-  const y = window.scrollY;
+const y=window.scrollY;
 
-  document.querySelector(".hero-title").style.transform =
-    `translateY(${y * 0.18}px)`;
+document.querySelector(".hero-title").style.transform=
+`translateY(${y*0.18}px)`;
 
-  document.querySelector(".hero-sub").style.transform =
-    `translateY(${y * 0.1}px)`;
+document.querySelector(".hero-sub").style.transform=
+`translateY(${y*0.1}px)`;
 
-  document.querySelector(".hero-frame").style.transform =
-    `translateY(${y * 0.25}px) scale(${1 + y * 0.0002})`;
+document.querySelector(".hero-frame").style.transform=
+`translateY(${y*0.25}px) scale(${1+y*0.0002})`;
 
 });
