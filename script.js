@@ -55,7 +55,7 @@ const LETTERS_DATA = {
 
   wanderer: {
     name: "Andhika Putra",
-    photo: "unknown.jpg",
+    photo: "unknown.jpeg",
     letter: `Dhika, mungkin saat ini kamu masih merasa belum benar-benar menemukan arah yang ingin kamu tuju, dan menurutku itu bukan sesuatu yang salah. Banyak orang menemukan passion mereka justru setelah mencoba berbagai hal. Jangan terburu-buru membandingkan dirimu dengan orang lain. Teruslah bereksplorasi, mencoba, dan belajar. Aku percaya suatu hari nanti kamu akan menemukan sesuatu yang benar-benar membuatmu bersemangat.`,
     memory: `Aku paling mengingat bagaimana kamu selalu mencoba memahami dirimu sendiri, meskipun mungkin kamu belum menemukan semua jawabannya hari ini.`
   },
@@ -65,24 +65,6 @@ const LETTERS_DATA = {
     photo: "farrel.jpg",
     letter: `Farrel, gua melihat lu sebagai orang yang sebenarnya memiliki potensi besar. Lu berani, gampang beradaptasi ketika sudah merasa nyaman, dan menurut gua memiliki kemampuan yang masih bisa berkembang jauh. Yang gua harapkan cuma lu bisa lebih konsisten terhadap apa yang ingin kamu capai. Potensi tanpa usaha akan tetap menjadi potensi. Gua yakin lu mampu menjadi pribadi yang jauh lebih hebat kalo lu mau terus bertumbuh.`,
     memory: `Hal yang paling gua ingat dari lu adalah bagaimana lu berubah dari sosok yang cukup pendiam menjadi jauh lebih aktif ketika mulai merasa nyaman dengan orang-orang di sekitar lu. iya gua perhatiin lu rel.`
-  },
-  ec: {
-    name: "David",
-    photo: "david.jpeg",
-    letter: `gimana nih kuliahnya so far? Aku harap menyenangkan dan seru abis yaa..
-    Sebelumnya, aku mau bilang thankyou udah ngikutin rangkaian acara FYP di ABN 13, thankyou udah aktif banget pas waktu sesi, lu keren banget asli.
-    Sukses terus kuliahnyaa, jangan nakal & semangat cari temen baru! Kalau mau nanya" boleh banget pc aku, dan kalau ketemu, sapa aja yaa!
-    Good luck on your college ventures!.`,
-    memory: `Keaktifan kamu di kelas & curiosity kamu yang sangat tinggi.`
-  },
-  ec: {
-    name: "David",
-    photo: "david.jpeg",
-    letter: `gimana nih kuliahnya so far? Aku harap menyenangkan dan seru abis yaa..
-    Sebelumnya, aku mau bilang thankyou udah ngikutin rangkaian acara FYP di ABN 13, thankyou udah aktif banget pas waktu sesi, lu keren banget asli.
-    Sukses terus kuliahnyaa, jangan nakal & semangat cari temen baru! Kalau mau nanya" boleh banget pc aku, dan kalau ketemu, sapa aja yaa!
-    Good luck on your college ventures!.`,
-    memory: `Keaktifan kamu di kelas & curiosity kamu yang sangat tinggi.`
   },
   ec: {
     name: "David",
@@ -174,7 +156,7 @@ const GALLERY_DATA = [
 
 /* ---------- 2b. GROUP PORTRAIT DATA (keyword: "fathir") ---------- */
 const GROUP_DATA = {
-  mainPhoto: "fathir-group.jpg",
+  mainPhoto: "moment2.jpeg",
   memories: [
     { img: "show.jpeg", caption: "Orientation Day" },
     { img: "teach.jpeg", caption: "Table Talks" },

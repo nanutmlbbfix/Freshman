@@ -55,7 +55,7 @@ const LETTERS_DATA = {
 
   wanderer: {
     name: "Andhika Putra",
-    photo: "andhika-putra.jpg",
+    photo: "unknown.jpeg",
     letter: `Dhika, mungkin saat ini kamu masih merasa belum benar-benar menemukan arah yang ingin kamu tuju, dan menurutku itu bukan sesuatu yang salah. Banyak orang menemukan passion mereka justru setelah mencoba berbagai hal. Jangan terburu-buru membandingkan dirimu dengan orang lain. Teruslah bereksplorasi, mencoba, dan belajar. Aku percaya suatu hari nanti kamu akan menemukan sesuatu yang benar-benar membuatmu bersemangat.`,
     memory: `Aku paling mengingat bagaimana kamu selalu mencoba memahami dirimu sendiri, meskipun mungkin kamu belum menemukan semua jawabannya hari ini.`
   },
@@ -84,7 +84,7 @@ const GALLERY_DATA = [
 
 /* ---------- 2b. GROUP PORTRAIT DATA (keyword: "fathir") ---------- */
 const GROUP_DATA = {
-  mainPhoto: "fathir-group.jpg",
+  mainPhoto: "moment2.jpeg",
   memories: [
     { img: "group-memory1.jpg", caption: "Orientation Day" },
     { img: "group-memory2.jpg", caption: "Table Talks" },
